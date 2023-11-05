@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const EditDriver = () => {
   const navigate = useNavigate();
@@ -25,9 +26,31 @@ const EditDriver = () => {
     };
     axios
       .put(`http://localhost:3000/drivers/${id}`, data)
-      .then(navigate("/"))
+      .then(
+        navigate("/"),
+        toast.success("Information updated successfully!", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
       .catch((error) => {
         console.log(error.message);
+        toast.error("Error occur!", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
@@ -36,9 +37,31 @@ const addDriver = () => {
       };
       axios
         .post("http://localhost:3000/drivers", data)
-        .then(navigate("/"))
+        .then(
+          navigate("/"),
+          toast.success("Driver created successfully!", {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+        )
         .catch((error) => {
           console.log(error.message);
+          toast.error("Error occur!", {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         });
     }
   };

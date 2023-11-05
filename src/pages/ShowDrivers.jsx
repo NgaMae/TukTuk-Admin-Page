@@ -2,14 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import DriverList from "../components/DriverList";
-import Loading from "../components/Loading";
-
+import { toast } from "react-toastify";
 const showDrivers = () => {
   return (
     <>
       <div className="flex flex-row justify-between bg-[#d0e9e6] h-[5rem] shadow-slate-400 shadow-lg w-full sticky top-0 z-30 bg-opacity-40 backdrop-blur backdrop-filter">
         <div className="font-SometypeMono italic text-[3rem] text-gray-700 ml-[2rem] h-full pt-1 flex-none max-[500px]:text-[2rem] max-[500px]:pt-4 max-[500px]:ml-1">
-          TukTuk.com
+          Tuk<span className="text-[#4dff4d]">Tuk</span>.com
         </div>
         <div className="min-[500px]:hidden h-fit my-auto mr-4">
           <Link to="/addDriver">

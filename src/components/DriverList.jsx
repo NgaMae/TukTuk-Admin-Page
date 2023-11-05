@@ -8,6 +8,7 @@ import axios from "axios";
 import AddButton from "../components/AddButton";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
+import { toast } from "react-toastify";
 
 const DriverList = () => {
   const [drivers, setDrivers] = useState([]);
@@ -29,9 +30,33 @@ const DriverList = () => {
 
   const HandleDelete = () => {
     setIsOpen(false);
-    axios.delete(`http://localhost:3000/drivers/${mark}`).catch((error) => {
-      console.log(error);
-    });
+    axios
+      .delete(`http://localhost:3000/drivers/${mark}`)
+      .then(
+        toast.success("Driver deleted successfully", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+        toast.error("Error occur!", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
   };
 
   return (
