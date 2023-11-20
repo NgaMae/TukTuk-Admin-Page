@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import admin from "../api/admin";
 
 const EditDriver = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const EditDriver = () => {
   const [licenseNo, setLicenseNo] = useState();
   const [NRC, setNRC] = useState();
 
-  const update = () => {
+  const update = async () => {
     const data = {
       name,
       userName,
@@ -24,8 +25,8 @@ const EditDriver = () => {
       NRC,
       licenseNo,
     };
-    axios
-      .put(`http://localhost:3000/drivers/${id}`, data)
+    await admin
+      .put(`/drivers/${id}`, data)
       .then(
         navigate("/"),
         toast.success("Information updated successfully!", {
@@ -55,8 +56,8 @@ const EditDriver = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/drivers/${id}`)
+    admin
+      .get(`/drivers/${id}`)
       .then((res) => {
         setName(res.data.name);
         setUserName(res.data.userName);
@@ -90,12 +91,12 @@ const EditDriver = () => {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Update Information!
           </h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
+          <p className="mt-2 text-lg leading-8 text-gray-600 max-[425px]:text-sm">
             Change the information you want to update and keep the rest remain
             the same
           </p>
         </div>
-        <form className="mx-auto mt-16 max-w-xl sm:mt-20">
+        <form className="mx-auto mt-16 max-w-xl sm:mt-20 max-[425px]:text-sm">
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
               <label className="block text-sm font-semibold leading-6 text-indigo-600">

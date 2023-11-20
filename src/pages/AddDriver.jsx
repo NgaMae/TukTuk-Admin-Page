@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import admin from "../api/admin";
 
 // import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
@@ -16,7 +17,7 @@ const addDriver = () => {
   const [licenseNo, setLicenseNo] = useState();
   const navigate = useNavigate();
 
-  const createDriver = () => {
+  const createDriver = async () => {
     if (
       name &&
       userName &&
@@ -35,8 +36,8 @@ const addDriver = () => {
         NRC,
         licenseNo,
       };
-      axios
-        .post("http://localhost:3000/drivers", data)
+      await admin
+        .post("/drivers", data)
         .then(
           navigate("/"),
           toast.success("Driver created successfully!", {
@@ -67,7 +68,7 @@ const addDriver = () => {
   };
 
   return (
-    <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8 font-Montserrat">
+    <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8 font-Montserrat max-[425px]:text-sm">
       <div
         className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
         aria-hidden="true"
@@ -85,7 +86,7 @@ const addDriver = () => {
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Registeration
         </h2>
-        <p className="mt-2 text-lg leading-8 text-gray-600">
+        <p className="mt-2 text-lg leading-8 text-gray-600 max-[425px]:text-sm">
           Create a driver account and password by adding the information
           completely.For both username and password, please reuse the driver's
           name with lowercase without space. So, later in driver app, the driver

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
+import admin from "../api/admin";
 
 const ShowDetail = () => {
   const { id } = useParams();
@@ -17,8 +18,8 @@ const ShowDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/drivers/${id}`)
+    admin
+      .get(`/drivers/${id}`)
       .then((res) => {
         setName(res.data.name);
         setUserName(res.data.userName);
@@ -45,22 +46,22 @@ const ShowDetail = () => {
         <>
           <div className="w-fit bg-gray-200 rounded-xl mx-auto flex flex-row">
             <div className="flex flex-col m-10 text-right">
-              <label className="m-5">Username</label>
-              <label className="m-5">Password</label>
-              <label className="m-5">Name</label>
-              <label className="m-5">Phone Number</label>
-              <label className="m-5">Address</label>
-              <label className="m-5">License Number</label>
-              <label className="m-5">NRC</label>
+              <label className="m-5 max-[425px]:m-3">Username</label>
+              <label className="m-5 max-[425px]:m-3">Password</label>
+              <label className="m-5 max-[425px]:m-3">Name</label>
+              <label className="m-5 max-[425px]:m-3">Phone Number</label>
+              <label className="m-5 max-[425px]:m-3">Address</label>
+              <label className="m-5 max-[425px]:m-3">License Number</label>
+              <label className="m-5 max-[425px]:m-3">NRC</label>
             </div>
             <div className="flex flex-col m-10">
-              <label className="m-5">{userName}</label>
-              <label className="m-5">{password}</label>
-              <label className="m-5">{name}</label>
-              <label className="m-5">{phoneNumber}</label>
-              <label className="m-5">{address}</label>
-              <label className="m-5">{licenseNo}</label>
-              <label className="m-5">{NRC}</label>
+              <label className="m-5  max-[425px]:m-3">{userName}</label>
+              <label className="m-5  max-[425px]:m-3">{password}</label>
+              <label className="m-5  max-[425px]:m-3">{name}</label>
+              <label className="m-5  max-[425px]:m-3">{phoneNumber}</label>
+              <label className="m-5  max-[425px]:m-3">{address}</label>
+              <label className="m-5  max-[425px]:m-3">{licenseNo}</label>
+              <label className="m-5  max-[425px]:m-3">{NRC}</label>
             </div>
           </div>
         </>
