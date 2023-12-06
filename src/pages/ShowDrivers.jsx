@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import DriverList from "../components/DriverList";
 import { toast } from "react-toastify";
+import Auth from "../components/auth";
+
 const showDrivers = () => {
-  return (
+  const [authenticated, setAuthenticated] = useState(false);
+
+  return !authenticated ? (
+    <Auth authenticated={authenticated} setAuthenticated={setAuthenticated} />
+  ) : (
     <>
       <div className="flex flex-row justify-between bg-[#d0e9e6] min-[425px]:h-[5rem] shadow-slate-400 shadow-lg w-full sticky top-0 z-30 bg-opacity-40 backdrop-blur backdrop-filter">
         <div className="font-SometypeMono italic text-[3rem] text-gray-700 ml-[2rem] h-full pt-1 flex-none max-[500px]:text-[2rem] max-[500px]:pt-4 max-[500px]:ml-1">

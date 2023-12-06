@@ -9,6 +9,9 @@ export default {
         Ubuntu: ['"Ubuntu"', "cursive"],
         Montserrat: ['"Montserrat"', "cursive"],
       },
+      backgroundImage: {
+        sunset: "url('/src/assets/authBg.jpg')",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms"), require("tailwind-scrollbar-hide")],

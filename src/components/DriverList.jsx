@@ -4,7 +4,6 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import { AiOutlineEdit } from "react-icons/ai";
 import { Dialog } from "@headlessui/react";
-import axios from "axios";
 import AddButton from "../components/AddButton";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
