@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import DriverList from "../components/DriverList";
-import { toast } from "react-toastify";
-import Auth from "../components/auth";
+import Auth from "../components/Auth";
 
 const showDrivers = () => {
   const [authenticated, setAuthenticated] = useState(false);
