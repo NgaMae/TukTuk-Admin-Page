@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import DriverList from "../components/DriverList";
 import Auth from "../components/Auth";
+import { connect } from "react-redux";
+import toggleBoolean from "../components/action";
 
-const showDrivers = () => {
+const ShowDrivers = (isBooleanTrue) => {
   const [authenticated, setAuthenticated] = useState(false);
+  console.log(isBooleanTrue.isBooleanTrue)
 
-  return !authenticated ? (
+  return !authenticated && !isBooleanTrue.isBooleanTrue ? (
     <Auth authenticated={authenticated} setAuthenticated={setAuthenticated} />
   ) : (
     <>
@@ -36,4 +39,11 @@ const showDrivers = () => {
   );
 };
 
-export default showDrivers;
+
+const mapStateToProps = (state) => {
+  return {
+    isBooleanTrue: state.isBooleanTrue,
+  };
+};
+
+export default connect(mapStateToProps, { toggleBoolean })(ShowDrivers);

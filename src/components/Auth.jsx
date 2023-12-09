@@ -1,7 +1,10 @@
 import React, { useRef } from "react";
 import TukTukLogo from "../assets/TukTukLogo.png";
+import { connect } from "react-redux";
+import toggleBoolean from "./action";
+import {store} from "./store"
 
-const Auth = ({ setAuthenticated }) => {
+const Auth = ({ setAuthenticated,isBooleanTrue, toggleBoolean }) => {
   return (
     <div className="w-full h-[100vh] absolute z-50 flex justify-center items-center bg-sunset bg-cover max-[600px]:bg-[100%]">
       <img src={TukTukLogo} alt="TukTuk" className="absolute max-[600px]:top-0" />
@@ -18,6 +21,7 @@ const Auth = ({ setAuthenticated }) => {
           if (import.meta.env.VITE_PASSWORD == e.target.value)
             setTimeout(() => {
               setAuthenticated(true);
+              store.dispatch(toggleBoolean());
             }, 500);
           else
             setTimeout(() => {
@@ -40,6 +44,7 @@ const Auth = ({ setAuthenticated }) => {
               if (import.meta.env.VITE_PASSWORD == e.target.value)
                 setTimeout(() => {
                   setAuthenticated(true);
+                  store.dispatch(toggleBoolean());
                 }, 500);
               else
                 setTimeout(() => {
@@ -80,4 +85,10 @@ const Auth = ({ setAuthenticated }) => {
   );
 };
 
-export default Auth;
+const mapStateToProps = (state) => {
+  return {
+    isBooleanTrue: state.isBooleanTrue,
+  };
+};
+
+export default connect(mapStateToProps, { toggleBoolean })(Auth);
